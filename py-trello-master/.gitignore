@@ -1,0 +1,9 @@
+build
+test_env
+deploy.sh
+*egg-info
+dist
+*pyc
+*swp
+.project
+.pydevproject
