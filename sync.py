@@ -1,15 +1,16 @@
 #!/usr/bin/env python
+import os
 import sys 
-sys.path.append("py-trello-master")
-sys.path.append("python-dateutil-1.5")
-
+sys.path.append(os.path.abspath(os.path.split(sys.argv[0])[0])+"/py-trello-master")
+sys.path.append(os.path.abspath(os.path.split(sys.argv[0])[0])+"/python-dateutil-1.5")
+print sys.path
 import os
 from trello import TrelloClient, Unauthorized, ResourceUnavailable
 from pprint import pprint
 import ConfigParser
 
 config = ConfigParser.RawConfigParser()
-config.read('config.properties')
+config.read(os.path.abspath(os.path.split(sys.argv[0])[0])+'/config.properties')
 
 # setup: pip install requests_oauthlib
 
@@ -29,7 +30,7 @@ for board in client.list_boards():
 		if aList.name == "Daily":
 			print "[found daily list] " + aList.name, aList.board.name
 			# board dailie tasks are stored in [boardName.toLower].txt
-			dailyListIn  = open(aList.board.name.lower()+".txt", "rb")
+			dailyListIn  = open(os.path.abspath(os.path.split(sys.argv[0])[0])+'/'+aList.board.name.lower()+".txt", "rb")
 			# archive all existing cards in this list FIRST
 			print "Archiving old daily cards"
 			aList.archive_all_cards()
