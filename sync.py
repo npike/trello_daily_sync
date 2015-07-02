@@ -9,6 +9,9 @@ from pprint import pprint
 import ConfigParser
 import calendar
 from datetime import date
+from datetime import datetime
+from dateutil import tz
+from datetime import timedelta
 
 config = ConfigParser.RawConfigParser()
 config.read(os.path.abspath(os.path.split(sys.argv[0])[0])+'/config.properties')
@@ -48,7 +51,7 @@ for board in client.list_boards():
 			shouldAddCard = True
 			dailyCard = None
 			dailyCardChecklist = []
-			
+
 			for line in dailyListIn:
 
 				# skip empty lines
@@ -73,7 +76,11 @@ for board in client.list_boards():
 							dailyCardChecklist = []
 						# create a new card
 						print "Creating card for "+line
-						dailyCard = aList.add_card(line)
+						dailyCard = aList.add_card(line, "Daily task")
+						today = datetime.utcnow().date()
+						start = datetime(today.year, today.month, today.day, tzinfo=tz.tzutc())
+						end = start + timedelta(1)
+						dailyCard.set_due(end) 
 					elif line.startswith("-"):
 						# track all of the list items for this card
 						# we will add them all to the card later
