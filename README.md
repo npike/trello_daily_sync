@@ -14,12 +14,29 @@ Script will search for any list called "Daily" (in any board), and then if there
 **Example daily config file:**
 
     Morning Vitamins
+
     Floss
+
     Check blood pressure
+
     10 minutes of German class
+
     Exercise
     - 10 pushups
     - 1 minute plank
+
+    [Tuesday]
+    Bike to work
+
+    [Thursday]
+    Rock climbing
+
+    [Friday]
+
+
+    [Saturday]
+    Clean apartment
+    Laundry
 
 
 **To setup:**
@@ -38,5 +55,3 @@ Script will search for any list called "Daily" (in any board), and then if there
 **To do:**
 
 * Add setup mode to script that will generate the user auth URL
-* Support adding daily tasks for specific days
-	i.e.  npike_friday.txt  would only have its contents added on Friday
